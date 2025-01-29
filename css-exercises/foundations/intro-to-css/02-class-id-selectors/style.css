@@ -1,0 +1,19 @@
+.n1,.n3,.n5 {
+    background-color: rgb(256,164,164);
+    font-family: Verdana,"DejaVuSans",sans-serif;
+}
+
+#n2 {
+    color: rgb(0,0,255);
+    font-size: 32px;
+}
+
+.n3 {
+    font-size: 24px;
+}
+ 
+#n4 {
+    background-color: rgb(144, 238, 144);
+    font-size: 24px;
+    font-weight: bold;
+}
