@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/mayank/repos/learning-repos/python_lang/myenv
+set -gx VIRTUAL_ENV /home/mayank/ubuntu_folders/repos/learning-repos/python_lang/myenv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

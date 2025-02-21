@@ -16,7 +16,7 @@ public class targetSumTwo {
         while(left<right) {
             if(arr[left] + arr[right] == target){
                 System.out.println("The sum of "+arr[left]+" and "+arr[right]+" on index "+left+" and "+right+" is equal to the target sum "+target);
-                left++;  
+                left++;
                 right--;
             }
             else if(arr[left] + arr[right] < target) {

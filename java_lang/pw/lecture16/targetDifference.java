@@ -8,7 +8,7 @@ public class targetDifference {
         int arr[] = ArrayMethods.get_input();
         System.out.print("Enter the target difference: ");
         int target = sc.nextInt();
-        
+
         int left = 0;
         int right = 1;
 
@@ -26,6 +26,6 @@ public class targetDifference {
             }
         }
         sc.close();
-    
+
     }
 }

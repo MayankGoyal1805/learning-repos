@@ -1,4 +1,4 @@
-#!/home/mayank/repos/learning-repos/python_lang/myenv/bin/python3
+#!/home/mayank/ubuntu_folders/repos/learning-repos/python_lang/myenv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
