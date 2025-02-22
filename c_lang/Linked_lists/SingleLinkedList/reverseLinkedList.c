@@ -11,7 +11,7 @@ int main(){
     ptr = append(ptr,94);
     ptr = append(ptr,93);
     printList(head);
-    delPos(&head,1);
+    revListD(&head);
     printf("\n\n");
     printList(head);
 }   

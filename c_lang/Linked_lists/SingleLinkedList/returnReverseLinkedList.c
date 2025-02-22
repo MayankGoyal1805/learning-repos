@@ -11,5 +11,10 @@ int main(){
     ptr = append(ptr,94);
     ptr = append(ptr,93);
     printList(head);
-    
+    node *head2 = revList(head);
+    printf("\n\n");
+    printList(head2);
+    printf("\n\n");
+    printList(head);
+    return 0;
 }   

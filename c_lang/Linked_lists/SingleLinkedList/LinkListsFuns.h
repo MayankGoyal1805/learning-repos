@@ -110,3 +110,52 @@ void delPos(node **head_a,int pos){
     ptr->link = ptr->link->link;
     free(temp);
 }
+
+void appendT(node **head_a, int data){
+    if( *head_a == NULL){
+        node *temp = (node*)malloc(sizeof(node));
+        temp->data = data;
+        temp->link = NULL;
+        *head_a = temp;
+    }
+    node *ptr = *head_a;
+    while(ptr->link != NULL){
+        ptr = ptr->link;
+    }
+    node *temp = (node*)malloc(sizeof(node));
+    temp->data = data;
+    temp->link = NULL;
+    ptr->link = temp;
+}
+
+void revListD(node **head_a){
+    node *ptr1 = *head_a;
+    node *ptr2 = (*head_a)->link;
+    ptr1->link = NULL;
+    node *temp;
+    while(ptr2->link != NULL){
+        temp = ptr2->link;
+        ptr2->link = ptr1;
+        ptr1 = ptr2;
+        ptr2 = temp;
+    }
+    ptr2->link = ptr1;
+    (*head_a) = ptr2;
+}
+
+node* revList(node* head){
+    node *ptr = head;
+    node *temp1 = NULL ;
+
+    while(ptr->link != NULL){
+        node *temp2 = (node*)malloc(sizeof(node));
+        temp2->data = ptr->data;
+        temp2->link = temp1;
+        temp1 = temp2;
+        ptr = ptr->link;
+    }
+    node *new = (node*)malloc(sizeof(node));
+    new->data = ptr->data;
+    new->link = temp1;
+    return new;
+}
