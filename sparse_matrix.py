@@ -44,6 +44,7 @@ class SparseMatrix:
         elif value != 0:
             self.elements.append(SparseElement(row, col, value))
 
+
     def remove_value(self, row, col):
         element = self._find_element(row, col)
         if element:

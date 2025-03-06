@@ -69,7 +69,7 @@ void addPos(node **head_a, int pos, int data)
 
 void delFirstNode(node** head_a) {
     if ( *head_a == NULL){
-        printf("Link list is already empty");
+        printf("Link list is already empty\n");
         return;
     }
     node *temp = *head_a;
@@ -78,17 +78,17 @@ void delFirstNode(node** head_a) {
     temp = NULL;
 }
 
-void delLastNode(node *head){
-    if(head == NULL){
+void delLastNode(node **head_a){
+    if(*head_a == NULL){
         printf("Linked list is already empty");
         return;
     }
-    if(head->link == NULL){
-        free(head);
-        head->link == NULL;
+    if((*head_a)->link == NULL){
+        free(*head_a);
+        *head_a = NULL;
         return;
     }
-    node *ptr = head;
+    node *ptr = *head_a;
     while(ptr->link->link != NULL){
         ptr = ptr->link;
     }
@@ -97,16 +97,29 @@ void delLastNode(node *head){
 }    
 
 void delPos(node **head_a,int pos){
+    if(*head_a == NULL){
+        printf("Linked lit is empty\n");
+        return;
+    }
     if(pos == 1){
-        node *temp1 = *head_a;
-        *head_a = (*head_a)->link;
+        node *temp1 = (*head_a)->link;
+        free(*head_a);
+        *head_a = temp1;
         return;
     }
     node *ptr = *head_a;
     for(int i=0;i<pos-2;i++){
+        if(ptr == NULL || ptr->link == NULL ) {
+            printf("Position out of bounds\n");
+            return;
+        }
         ptr = ptr->link;
     }
     node *temp = ptr->link;
+    if(temp == NULL) {
+        printf("Position out of bound");
+        return;
+    }
     ptr->link = ptr->link->link;
     free(temp);
 }
@@ -129,33 +142,64 @@ void appendT(node **head_a, int data){
 }
 
 void revListD(node **head_a){
+    if(*head_a == NULL){
+        printf("Linked list is empty\n");
+        return;
+    }
+    if((*head_a)->link == NULL) {
+        printf("There is just one element in list\n");
+        return;
+    }
     node *ptr1 = *head_a;
     node *ptr2 = (*head_a)->link;
     ptr1->link = NULL;
     node *temp;
-    while(ptr2->link != NULL){
+    while(ptr2 != NULL){
         temp = ptr2->link;
         ptr2->link = ptr1;
         ptr1 = ptr2;
         ptr2 = temp;
     }
-    ptr2->link = ptr1;
-    (*head_a) = ptr2;
+    (*head_a) = ptr1;
 }
 
 node* revList(node* head){
+
+    if(head == NULL){
+        printf("Linked list is empty\n");
+        node *new_head = head;
+        return new_head;
+    }
+
     node *ptr = head;
     node *temp1 = NULL ;
 
-    while(ptr->link != NULL){
+    while(ptr!= NULL){
         node *temp2 = (node*)malloc(sizeof(node));
+        if(temp2 == NULL) {
+            printf("Memory allocation failed");
+        }
         temp2->data = ptr->data;
         temp2->link = temp1;
         temp1 = temp2;
         ptr = ptr->link;
     }
-    node *new = (node*)malloc(sizeof(node));
-    new->data = ptr->data;
-    new->link = temp1;
-    return new;
+    // node *new_head = (node*)malloc(sizeof(node));
+    // if(new_head == NULL) {
+    //     printf("Memory allocation failed");
+    // }
+    // new_head->data = ptr->data;
+    // new_head->link = temp1;
+    return temp1;
+}
+
+void delList(node **head_a) {
+    node *ptr = *head_a;
+    node *temp = NULL;
+    while(ptr!= NULL){
+        temp = ptr->link;
+        free(ptr);
+        ptr = temp;
+    }
+    *head_a = NULL;
 }
