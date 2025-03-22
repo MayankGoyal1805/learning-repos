@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.8.20/src/util/macro_util.rs`."><title>macro_util.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="zerocopy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">zerocopy/util/</div>macro_util.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.8.23/src/util/macro_util.rs`."><title>macro_util.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="zerocopy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">zerocopy/util/</div>macro_util.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1078,7 +1078,37 @@
 <a href="#1077" id="1077">1077</a>
 <a href="#1078" id="1078">1078</a>
 <a href="#1079" id="1079">1079</a>
-<a href="#1080" id="1080">1080</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 The Fuchsia Authors
+<a href="#1080" id="1080">1080</a>
+<a href="#1081" id="1081">1081</a>
+<a href="#1082" id="1082">1082</a>
+<a href="#1083" id="1083">1083</a>
+<a href="#1084" id="1084">1084</a>
+<a href="#1085" id="1085">1085</a>
+<a href="#1086" id="1086">1086</a>
+<a href="#1087" id="1087">1087</a>
+<a href="#1088" id="1088">1088</a>
+<a href="#1089" id="1089">1089</a>
+<a href="#1090" id="1090">1090</a>
+<a href="#1091" id="1091">1091</a>
+<a href="#1092" id="1092">1092</a>
+<a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
+<a href="#1095" id="1095">1095</a>
+<a href="#1096" id="1096">1096</a>
+<a href="#1097" id="1097">1097</a>
+<a href="#1098" id="1098">1098</a>
+<a href="#1099" id="1099">1099</a>
+<a href="#1100" id="1100">1100</a>
+<a href="#1101" id="1101">1101</a>
+<a href="#1102" id="1102">1102</a>
+<a href="#1103" id="1103">1103</a>
+<a href="#1104" id="1104">1104</a>
+<a href="#1105" id="1105">1105</a>
+<a href="#1106" id="1106">1106</a>
+<a href="#1107" id="1107">1107</a>
+<a href="#1108" id="1108">1108</a>
+<a href="#1109" id="1109">1109</a>
+<a href="#1110" id="1110">1110</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 The Fuchsia Authors
 //
 // Licensed under a BSD-style license &lt;LICENSE-BSD&gt;, Apache License, Version 2.0
 // &lt;LICENSE-APACHE or https://www.apache.org/licenses/LICENSE-2.0&gt;, or the MIT
@@ -1105,11 +1135,8 @@
 </span><span class="kw">use </span>core::ptr::{<span class="self">self</span>, NonNull};
 
 <span class="kw">use crate</span>::{
-    pointer::{
-        invariant::{<span class="self">self</span>, AtLeast, Invariants},
-        AliasingSafe, AliasingSafeReason, BecauseExclusive, BecauseImmutable,
-    },
-    FromBytes, Immutable, IntoBytes, Ptr, TryFromBytes, Unalign, ValidityError,
+    pointer::invariant::{<span class="self">self</span>, BecauseExclusive, BecauseImmutable, Invariants},
+    FromBytes, Immutable, IntoBytes, Ptr, TryFromBytes, ValidityError,
 };
 
 <span class="doccomment">/// Projects the type of the field at `Index` in `Self`.
@@ -1181,7 +1208,8 @@
     }
 }
 
-<span class="kw">const </span>_64K: usize = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+<span class="attr">#[cfg(__ZEROCOPY_INTERNAL_USE_ONLY_NIGHTLY_FEATURES_IN_TESTS)]
+</span><span class="kw">const </span>_64K: usize = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
 
 <span class="comment">// TODO(#29), TODO(https://github.com/rust-lang/rust/issues/69835): Remove this
 // `cfg` when `size_of_val_raw` is stabilized.
@@ -1612,9 +1640,14 @@
 ///
 /// # Safety
 ///
-/// Unsafe code may assume that, if `try_cast_or_pme(src)` returns `Some`,
+/// Unsafe code may assume that, if `try_cast_or_pme(src)` returns `Ok`,
 /// `*src` is a bit-valid instance of `Dst`, and that the size of `Src` is
 /// greater than or equal to the size of `Dst`.
+///
+/// Unsafe code may assume that, if `try_cast_or_pme(src)` returns `Err`, the
+/// encapsulated `Ptr` value is the original `src`. `try_cast_or_pme` cannot
+/// guarantee that the referent has not been modified, as it calls user-defined
+/// code (`TryFromBytes::is_bit_valid`).
 ///
 /// # Panics
 ///
@@ -1628,17 +1661,16 @@
 </span><span class="kw">fn </span>try_cast_or_pme&lt;Src, Dst, I, R&gt;(
     src: Ptr&lt;<span class="lifetime">'_</span>, Src, I&gt;,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;
-    Ptr&lt;<span class="lifetime">'_</span>, Dst, (I::Aliasing, invariant::Any, invariant::Valid)&gt;,
+    Ptr&lt;<span class="lifetime">'_</span>, Dst, (I::Aliasing, invariant::Unaligned, invariant::Valid)&gt;,
     ValidityError&lt;Ptr&lt;<span class="lifetime">'_</span>, Src, I&gt;, Dst&gt;,
 &gt;
 <span class="kw">where
     </span><span class="comment">// TODO(#2226): There should be a `Src: FromBytes` bound here, but doing so
     // requires deeper surgery.
-    </span>Src: IntoBytes,
-    Dst: TryFromBytes + AliasingSafe&lt;Src, I::Aliasing, R&gt;,
-    I: Invariants&lt;Validity = invariant::Valid&gt;,
-    I::Aliasing: AtLeast&lt;invariant::Shared&gt;,
-    R: AliasingSafeReason,
+    </span>Src: invariant::Read&lt;I::Aliasing, R&gt;,
+    Dst: TryFromBytes + invariant::Read&lt;I::Aliasing, R&gt;,
+    I: Invariants&lt;Validity = invariant::Initialized&gt;,
+    I::Aliasing: invariant::Reference,
 {
     <span class="macro">static_assert!</span>(Src, Dst =&gt; mem::size_of::&lt;Dst&gt;() == mem::size_of::&lt;Src&gt;());
 
@@ -1647,17 +1679,8 @@
     //   because we assert above that the size of `Dst` equal to the size of
     //   `Src`.
     // - `p as *mut Dst` is a provenance-preserving cast
-    // - Because `Dst: AliasingSafe&lt;Src, I::Aliasing, _&gt;`, either:
-    //   - `I::Aliasing` is `Exclusive`
-    //   - `Src` and `Dst` are both `Immutable`, in which case they
-    //     trivially contain `UnsafeCell`s at identical locations
     </span><span class="attr">#[allow(clippy::as_conversions)]
     </span><span class="kw">let </span>c_ptr = <span class="kw">unsafe </span>{ src.cast_unsized(|p| p <span class="kw">as </span><span class="kw-2">*mut </span>Dst) };
-
-    <span class="comment">// SAFETY: `c_ptr` is derived from `src` which is `IntoBytes`. By
-    // invariant on `IntoByte`s, `c_ptr`'s referent consists entirely of
-    // initialized bytes.
-    </span><span class="kw">let </span>c_ptr = <span class="kw">unsafe </span>{ c_ptr.assume_initialized() };
 
     <span class="kw">match </span>c_ptr.try_into_valid() {
         <span class="prelude-val">Ok</span>(ptr) =&gt; <span class="prelude-val">Ok</span>(ptr),
@@ -1670,10 +1693,6 @@
             //   `ptr`, because we assert above that the size of `Dst` is equal
             //   to the size of `Src`.
             // - `p as *mut Src` is a provenance-preserving cast
-            // - Because `Dst: AliasingSafe&lt;Src, I::Aliasing, _&gt;`, either:
-            //   - `I::Aliasing` is `Exclusive`
-            //   - `Src` and `Dst` are both `Immutable`, in which case they
-            //     trivially contain `UnsafeCell`s at identical locations
             </span><span class="attr">#[allow(clippy::as_conversions)]
             </span><span class="kw">let </span>ptr = <span class="kw">unsafe </span>{ ptr.cast_unsized(|p| p <span class="kw">as </span><span class="kw-2">*mut </span>Src) };
             <span class="comment">// SAFETY: `ptr` is `src`, and has the same alignment invariant.
@@ -1702,19 +1721,44 @@
     </span>Src: IntoBytes,
     Dst: TryFromBytes,
 {
-    <span class="kw">let </span><span class="kw-2">mut </span>src = ManuallyDrop::new(src);
-    <span class="kw">let </span>ptr = Ptr::from_mut(<span class="kw-2">&amp;mut </span>src);
-    <span class="comment">// Wrapping `Dst` in `Unalign` ensures that this cast does not fail due to
-    // alignment requirements.
-    </span><span class="kw">match </span>try_cast_or_pme::&lt;<span class="kw">_</span>, ManuallyDrop&lt;Unalign&lt;Dst&gt;&gt;, <span class="kw">_</span>, BecauseExclusive&gt;(ptr) {
-        <span class="prelude-val">Ok</span>(ptr) =&gt; {
-            <span class="kw">let </span>dst = ptr.bikeshed_recall_aligned().as_mut();
-            <span class="comment">// SAFETY: By shadowing `dst`, we ensure that `dst` is not re-used
-            // after taking its inner value.
-            </span><span class="kw">let </span>dst = <span class="kw">unsafe </span>{ ManuallyDrop::take(dst) };
-            <span class="prelude-val">Ok</span>(dst.into_inner())
-        }
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(ValidityError::new(ManuallyDrop::into_inner(src))),
+    <span class="macro">static_assert!</span>(Src, Dst =&gt; mem::size_of::&lt;Dst&gt;() == mem::size_of::&lt;Src&gt;());
+
+    <span class="kw">let </span>mu_src = mem::MaybeUninit::new(src);
+    <span class="comment">// SAFETY: By invariant on `&amp;`, the following are satisfied:
+    // - `&amp;mu_src` is valid for reads
+    // - `&amp;mu_src` is properly aligned
+    // - `&amp;mu_src`'s referent is bit-valid
+    </span><span class="kw">let </span>mu_src_copy = <span class="kw">unsafe </span>{ core::ptr::read(<span class="kw-2">&amp;</span>mu_src) };
+    <span class="comment">// SAFETY: `MaybeUninit` has no validity constraints.
+    </span><span class="kw">let </span><span class="kw-2">mut </span>mu_dst: mem::MaybeUninit&lt;Dst&gt; =
+        <span class="kw">unsafe </span>{ <span class="kw">crate</span>::util::transmute_unchecked(mu_src_copy) };
+
+    <span class="kw">let </span>ptr = Ptr::from_mut(<span class="kw-2">&amp;mut </span>mu_dst);
+
+    <span class="comment">// SAFETY: Since `Src: IntoBytes`, and since `size_of::&lt;Src&gt;() ==
+    // size_of::&lt;Dst&gt;()` by the preceding assertion, all of `mu_dst`'s bytes are
+    // initialized.
+    </span><span class="kw">let </span>ptr = <span class="kw">unsafe </span>{ ptr.assume_validity::&lt;invariant::Initialized&gt;() };
+
+    <span class="comment">// SAFETY: `MaybeUninit&lt;T&gt;` and `T` have the same size [1], so this cast
+    // preserves the referent's size. This cast preserves provenance.
+    //
+    // [1] Per https://doc.rust-lang.org/1.81.0/std/mem/union.MaybeUninit.html#layout-1:
+    //
+    //   `MaybeUninit&lt;T&gt;` is guaranteed to have the same size, alignment, and
+    //   ABI as `T`
+    </span><span class="kw">let </span>ptr: Ptr&lt;<span class="lifetime">'_</span>, Dst, <span class="kw">_</span>&gt; =
+        <span class="kw">unsafe </span>{ ptr.cast_unsized(|mu: <span class="kw-2">*mut </span>mem::MaybeUninit&lt;Dst&gt;| mu.cast()) };
+
+    <span class="kw">if </span>Dst::is_bit_valid(ptr.forget_aligned()) {
+        <span class="comment">// SAFETY: Since `Dst::is_bit_valid`, we know that `ptr`'s referent is
+        // bit-valid for `Dst`. `ptr` points to `mu_dst`, and no intervening
+        // operations have mutated it, so it is a bit-valid `Dst`.
+        </span><span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ mu_dst.assume_init() })
+    } <span class="kw">else </span>{
+        <span class="comment">// SAFETY: `mu_src` was constructed from `src` and never modified, so it
+        // is still bit-valid.
+        </span><span class="prelude-val">Err</span>(ValidityError::new(<span class="kw">unsafe </span>{ mu_src.assume_init() }))
     }
 }
 
@@ -1736,7 +1780,9 @@
     </span>Src: IntoBytes + Immutable,
     Dst: TryFromBytes + Immutable,
 {
-    <span class="kw">match </span>try_cast_or_pme::&lt;Src, Dst, <span class="kw">_</span>, BecauseImmutable&gt;(Ptr::from_ref(src)) {
+    <span class="kw">let </span>ptr = Ptr::from_ref(src);
+    <span class="kw">let </span>ptr = ptr.bikeshed_recall_initialized_immutable();
+    <span class="kw">match </span>try_cast_or_pme::&lt;Src, Dst, <span class="kw">_</span>, BecauseImmutable&gt;(ptr) {
         <span class="prelude-val">Ok</span>(ptr) =&gt; {
             <span class="macro">static_assert!</span>(Src, Dst =&gt; mem::align_of::&lt;Dst&gt;() &lt;= mem::align_of::&lt;Src&gt;());
             <span class="comment">// SAFETY: We have checked that `Dst` does not have a stricter
@@ -1744,7 +1790,19 @@
             </span><span class="kw">let </span>ptr = <span class="kw">unsafe </span>{ ptr.assume_alignment::&lt;invariant::Aligned&gt;() };
             <span class="prelude-val">Ok</span>(ptr.as_ref())
         }
-        <span class="prelude-val">Err</span>(err) =&gt; <span class="prelude-val">Err</span>(err.map_src(Ptr::as_ref)),
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="prelude-val">Err</span>(err.map_src(|ptr| {
+            <span class="comment">// SAFETY: Because `Src: Immutable` and we create a `Ptr` via
+            // `Ptr::from_ref`, the resulting `Ptr` is a shared-and-`Immutable`
+            // `Ptr`, which does not permit mutation of its referent. Therefore,
+            // no mutation could have happened during the call to
+            // `try_cast_or_pme` (any such mutation would be unsound).
+            //
+            // `try_cast_or_pme` promises to return its original argument, and
+            // so we know that we are getting back the same `ptr` that we
+            // originally passed, and that `ptr` was a bit-valid `Src`.
+            </span><span class="kw">let </span>ptr = <span class="kw">unsafe </span>{ ptr.assume_valid() };
+            ptr.as_ref()
+        })),
     }
 }
 
@@ -1766,7 +1824,9 @@
     </span>Src: FromBytes + IntoBytes,
     Dst: TryFromBytes + IntoBytes,
 {
-    <span class="kw">match </span>try_cast_or_pme::&lt;Src, Dst, <span class="kw">_</span>, BecauseExclusive&gt;(Ptr::from_mut(src)) {
+    <span class="kw">let </span>ptr = Ptr::from_mut(src);
+    <span class="kw">let </span>ptr = ptr.bikeshed_recall_initialized_from_bytes();
+    <span class="kw">match </span>try_cast_or_pme::&lt;Src, Dst, <span class="kw">_</span>, BecauseExclusive&gt;(ptr) {
         <span class="prelude-val">Ok</span>(ptr) =&gt; {
             <span class="macro">static_assert!</span>(Src, Dst =&gt; mem::align_of::&lt;Dst&gt;() &lt;= mem::align_of::&lt;Src&gt;());
             <span class="comment">// SAFETY: We have checked that `Dst` does not have a stricter
@@ -1774,7 +1834,7 @@
             </span><span class="kw">let </span>ptr = <span class="kw">unsafe </span>{ ptr.assume_alignment::&lt;invariant::Aligned&gt;() };
             <span class="prelude-val">Ok</span>(ptr.as_mut())
         }
-        <span class="prelude-val">Err</span>(err) =&gt; <span class="prelude-val">Err</span>(err.map_src(Ptr::as_mut)),
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="prelude-val">Err</span>(err.map_src(|ptr| ptr.bikeshed_recall_valid().as_mut())),
     }
 }
 

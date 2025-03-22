@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/rand_core-0.9.1/src/block.rs`."><title>block.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rand_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://www.rust-lang.org/favicon.ico"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">rand_core/</div>block.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/rand_core-0.9.3/src/block.rs`."><title>block.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rand_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://www.rust-lang.org/favicon.ico"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">rand_core/</div>block.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -532,11 +532,7 @@
 <a href="#531" id="531">531</a>
 <a href="#532" id="532">532</a>
 <a href="#533" id="533">533</a>
-<a href="#534" id="534">534</a>
-<a href="#535" id="535">535</a>
-<a href="#536" id="536">536</a>
-<a href="#537" id="537">537</a>
-<a href="#538" id="538">538</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.
+<a href="#534" id="534">534</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.
 //
 // Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or
 // https://www.apache.org/licenses/LICENSE-2.0&gt; or the MIT license
@@ -591,7 +587,7 @@
 //! [`BlockRngCore`]: crate::block::BlockRngCore
 //! [`fill_bytes`]: RngCore::fill_bytes
 
-</span><span class="kw">use </span><span class="kw">crate</span>::impls::{fill_via_u32_chunks, fill_via_u64_chunks};
+</span><span class="kw">use </span><span class="kw">crate</span>::impls::fill_via_chunks;
 <span class="kw">use crate</span>::{CryptoRng, RngCore, SeedableRng, TryRngCore};
 <span class="kw">use </span>core::fmt;
 <span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
@@ -735,7 +731,7 @@
     </span><span class="kw">fn </span>next_u64(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; u64 {
         <span class="kw">let </span>read_u64 = |results: <span class="kw-2">&amp;</span>[u32], index| {
             <span class="kw">let </span>data = <span class="kw-2">&amp;</span>results[index..=index + <span class="number">1</span>];
-            u64::from(data[<span class="number">1</span>]) &lt;&lt; <span class="number">32 </span>| u64::from(data[<span class="number">0</span>])
+            (u64::from(data[<span class="number">1</span>]) &lt;&lt; <span class="number">32</span>) | u64::from(data[<span class="number">0</span>])
         };
 
         <span class="kw">let </span>len = <span class="self">self</span>.results.as_ref().len();
@@ -763,10 +759,8 @@
             <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.results.as_ref().len() {
                 <span class="self">self</span>.generate_and_set(<span class="number">0</span>);
             }
-            <span class="kw">let </span>(consumed_u32, filled_u8) = fill_via_u32_chunks(
-                <span class="kw-2">&amp;mut </span><span class="self">self</span>.results.as_mut()[<span class="self">self</span>.index..],
-                <span class="kw-2">&amp;mut </span>dest[read_len..],
-            );
+            <span class="kw">let </span>(consumed_u32, filled_u8) =
+                fill_via_chunks(<span class="kw-2">&amp;</span><span class="self">self</span>.results.as_mut()[<span class="self">self</span>.index..], <span class="kw-2">&amp;mut </span>dest[read_len..]);
 
             <span class="self">self</span>.index += consumed_u32;
             read_len += filled_u8;
@@ -928,10 +922,8 @@
                 <span class="self">self</span>.index = <span class="number">0</span>;
             }
 
-            <span class="kw">let </span>(consumed_u64, filled_u8) = fill_via_u64_chunks(
-                <span class="kw-2">&amp;mut </span><span class="self">self</span>.results.as_mut()[<span class="self">self</span>.index..],
-                <span class="kw-2">&amp;mut </span>dest[read_len..],
-            );
+            <span class="kw">let </span>(consumed_u64, filled_u8) =
+                fill_via_chunks(<span class="kw-2">&amp;</span><span class="self">self</span>.results.as_mut()[<span class="self">self</span>.index..], <span class="kw-2">&amp;mut </span>dest[read_len..]);
 
             <span class="self">self</span>.index += consumed_u64;
             read_len += filled_u8;

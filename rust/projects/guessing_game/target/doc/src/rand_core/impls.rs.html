@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/rand_core-0.9.1/src/impls.rs`."><title>impls.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rand_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://www.rust-lang.org/favicon.ico"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">rand_core/</div>impls.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/rand_core-0.9.3/src/impls.rs`."><title>impls.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rand_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="icon" href="https://www.rust-lang.org/favicon.ico"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">rand_core/</div>impls.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -204,7 +204,18 @@
 <a href="#203" id="203">203</a>
 <a href="#204" id="204">204</a>
 <a href="#205" id="205">205</a>
-<a href="#206" id="206">206</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.
+<a href="#206" id="206">206</a>
+<a href="#207" id="207">207</a>
+<a href="#208" id="208">208</a>
+<a href="#209" id="209">209</a>
+<a href="#210" id="210">210</a>
+<a href="#211" id="211">211</a>
+<a href="#212" id="212">212</a>
+<a href="#213" id="213">213</a>
+<a href="#214" id="214">214</a>
+<a href="#215" id="215">215</a>
+<a href="#216" id="216">216</a>
+<a href="#217" id="217">217</a></pre></div><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.
 //
 // Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or
 // https://www.apache.org/licenses/LICENSE-2.0&gt; or the MIT license
@@ -224,8 +235,6 @@
 //! non-reproducible sources (e.g. `OsRng`) need not bother with it.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::RngCore;
-<span class="kw">use </span>core::cmp::min;
-<span class="kw">use </span>zerocopy::{Immutable, IntoBytes};
 
 <span class="doccomment">/// Implement `next_u64` via `next_u32`, little-endian order.
 </span><span class="kw">pub fn </span>next_u64_via_u32&lt;R: RngCore + <span class="question-mark">?</span>Sized&gt;(rng: <span class="kw-2">&amp;mut </span>R) -&gt; u64 {
@@ -259,41 +268,52 @@
     }
 }
 
-<span class="kw">trait </span>Observable: IntoBytes + Immutable + Copy {
-    <span class="kw">fn </span>to_le(<span class="self">self</span>) -&gt; <span class="self">Self</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait </span>Observable: Copy {
+    <span class="kw">type </span>Bytes: Sized + AsRef&lt;[u8]&gt;;
+    <span class="kw">fn </span>to_le_bytes(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Bytes;
 }
 <span class="kw">impl </span>Observable <span class="kw">for </span>u32 {
-    <span class="kw">fn </span>to_le(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.to_le()
+    <span class="kw">type </span>Bytes = [u8; <span class="number">4</span>];
+
+    <span class="kw">fn </span>to_le_bytes(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Bytes {
+        <span class="self">Self</span>::to_le_bytes(<span class="self">self</span>)
     }
 }
 <span class="kw">impl </span>Observable <span class="kw">for </span>u64 {
-    <span class="kw">fn </span>to_le(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
-        <span class="self">self</span>.to_le()
+    <span class="kw">type </span>Bytes = [u8; <span class="number">8</span>];
+
+    <span class="kw">fn </span>to_le_bytes(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Bytes {
+        <span class="self">Self</span>::to_le_bytes(<span class="self">self</span>)
     }
 }
 
 <span class="doccomment">/// Fill dest from src
 ///
-/// Returns `(n, byte_len)`. `src[..n]` is consumed (and possibly mutated),
+/// Returns `(n, byte_len)`. `src[..n]` is consumed,
 /// `dest[..byte_len]` is filled. `src[n..]` and `dest[byte_len..]` are left
 /// unaltered.
-</span><span class="kw">fn </span>fill_via_chunks&lt;T: Observable&gt;(src: <span class="kw-2">&amp;mut </span>[T], dest: <span class="kw-2">&amp;mut </span>[u8]) -&gt; (usize, usize) {
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>fill_via_chunks&lt;T: Observable&gt;(src: <span class="kw-2">&amp;</span>[T], dest: <span class="kw-2">&amp;mut </span>[u8]) -&gt; (usize, usize) {
     <span class="kw">let </span>size = core::mem::size_of::&lt;T&gt;();
-    <span class="kw">let </span>byte_len = min(core::mem::size_of_val(src), dest.len());
-    <span class="kw">let </span>num_chunks = (byte_len + size - <span class="number">1</span>) / size;
 
-    <span class="comment">// Byte-swap for portability of results. This must happen before copying
-    // since the size of dest is not guaranteed to be a multiple of T or to be
-    // sufficiently aligned.
-    </span><span class="kw">if </span><span class="macro">cfg!</span>(target_endian = <span class="string">"big"</span>) {
-        <span class="kw">for </span>x <span class="kw">in </span><span class="kw-2">&amp;mut </span>src[..num_chunks] {
-            <span class="kw-2">*</span>x = x.to_le();
+    <span class="comment">// Always use little endian for portability of results.
+
+    </span><span class="kw">let </span><span class="kw-2">mut </span>dest = dest.chunks_exact_mut(size);
+    <span class="kw">let </span><span class="kw-2">mut </span>src = src.iter();
+
+    <span class="kw">let </span>zipped = dest.by_ref().zip(src.by_ref());
+    <span class="kw">let </span>num_chunks = zipped.len();
+    zipped.for_each(|(dest, src)| dest.copy_from_slice(src.to_le_bytes().as_ref()));
+
+    <span class="kw">let </span>byte_len = num_chunks * size;
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(src) = src.next() {
+        <span class="comment">// We have consumed all full chunks of dest, but not src.
+        </span><span class="kw">let </span>dest = dest.into_remainder();
+        <span class="kw">let </span>n = dest.len();
+        <span class="kw">if </span>n &gt; <span class="number">0 </span>{
+            dest.copy_from_slice(<span class="kw-2">&amp;</span>src.to_le_bytes().as_ref()[..n]);
+            <span class="kw">return </span>(num_chunks + <span class="number">1</span>, byte_len + n);
         }
     }
-
-    dest[..byte_len].copy_from_slice(<span class="kw-2">&amp;</span>&lt;[T]&gt;::as_bytes(<span class="kw-2">&amp;</span>src[..num_chunks])[..byte_len]);
-
     (num_chunks, byte_len)
 }
 
@@ -302,8 +322,8 @@
 ///
 /// The return values are `(consumed_u32, filled_u8)`.
 ///
-/// On big-endian systems, endianness of `src[..consumed_u32]` values is
-/// swapped. No other adjustments to `src` are made.
+/// `src` is not modified; it is taken as a `&amp;mut` reference for backward
+/// compatibility with previous versions that did change it.
 ///
 /// `filled_u8` is the number of filled bytes in `dest`, which may be less than
 /// the length of `dest`.
@@ -330,6 +350,7 @@
 ///     }
 /// }
 /// ```
+</span><span class="attr">#[deprecated(since = <span class="string">"0.9.3"</span>, note = <span class="string">"use BlockRng instead"</span>)]
 </span><span class="kw">pub fn </span>fill_via_u32_chunks(src: <span class="kw-2">&amp;mut </span>[u32], dest: <span class="kw-2">&amp;mut </span>[u8]) -&gt; (usize, usize) {
     fill_via_chunks(src, dest)
 }
@@ -339,8 +360,8 @@
 ///
 /// The return values are `(consumed_u64, filled_u8)`.
 ///
-/// On big-endian systems, endianness of `src[..consumed_u64]` values is
-/// swapped. No other adjustments to `src` are made.
+/// `src` is not modified; it is taken as a `&amp;mut` reference for backward
+/// compatibility with previous versions that did change it.
 ///
 /// `filled_u8` is the number of filled bytes in `dest`, which may be less than
 /// the length of `dest`.
@@ -348,6 +369,7 @@
 /// as `filled_u8 / 8` rounded up.
 ///
 /// See `fill_via_u32_chunks` for an example.
+</span><span class="attr">#[deprecated(since = <span class="string">"0.9.3"</span>, note = <span class="string">"use BlockRng64 instead"</span>)]
 </span><span class="kw">pub fn </span>fill_via_u64_chunks(src: <span class="kw-2">&amp;mut </span>[u64], dest: <span class="kw-2">&amp;mut </span>[u8]) -&gt; (usize, usize) {
     fill_via_chunks(src, dest)
 }
@@ -372,41 +394,41 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_fill_via_u32_chunks() {
-        <span class="kw">let </span>src_orig = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+        <span class="kw">let </span>src_orig = [<span class="number">1u32</span>, <span class="number">2</span>, <span class="number">3</span>];
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">11</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u32_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">3</span>, <span class="number">11</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">3</span>, <span class="number">11</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>]);
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">13</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u32_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">3</span>, <span class="number">12</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">3</span>, <span class="number">12</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]);
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">5</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u32_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">5</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>]);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_fill_via_u64_chunks() {
-        <span class="kw">let </span>src_orig = [<span class="number">1</span>, <span class="number">2</span>];
+        <span class="kw">let </span>src_orig = [<span class="number">1u64</span>, <span class="number">2</span>];
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">11</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u64_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">11</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">11</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>]);
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">17</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u64_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">16</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">2</span>, <span class="number">16</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]);
 
         <span class="kw">let </span><span class="kw-2">mut </span>src = src_orig;
         <span class="kw">let </span><span class="kw-2">mut </span>dst = [<span class="number">0u8</span>; <span class="number">5</span>];
-        <span class="macro">assert_eq!</span>(fill_via_u64_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">1</span>, <span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(fill_via_chunks(<span class="kw-2">&amp;mut </span>src, <span class="kw-2">&amp;mut </span>dst), (<span class="number">1</span>, <span class="number">5</span>));
         <span class="macro">assert_eq!</span>(dst, [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]);
     }
 }

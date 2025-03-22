@@ -7,7 +7,7 @@ typedef struct node{
     struct node* next;
 } Node;
 
-node* circularDoubly(int data){
+node* createNode(int data){
     node *temp = (node*)malloc(sizeof(node));
     temp->prev = temp;
     temp->data = data;

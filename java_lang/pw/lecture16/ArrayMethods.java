@@ -16,7 +16,7 @@ public class ArrayMethods {
         return arr;
     }
 
-    public static void targetSumTw0(int arr[]) {
+    public static void targetSumTwo(int arr[]) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the target sum: ");
         int target = sc.nextInt();

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.8.20/src/util/macros.rs`."><title>macros.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="zerocopy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">zerocopy/util/</div>macros.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/mayank/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.8.23/src/util/macros.rs`."><title>macros.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-42caa33d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="zerocopy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.1 (e71f9a9a9 2025-01-27)" data-channel="1.84.1" data-search-js="search-92e6798f.js" data-settings-js="settings-0f613d39.js" ><script src="../../../static.files/storage-59e33391.js"></script><script defer src="../../../static.files/src-script-56102188.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">zerocopy/util/</div>macros.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -976,7 +976,7 @@
         </span><span class="kw">fn </span>only_derive_is_allowed_to_implement_this_trait() {}
 
         <span class="attr">#[inline]
-        </span><span class="kw">fn </span>is_bit_valid&lt;AA: invariant::Aliasing + invariant::AtLeast&lt;invariant::Shared&gt;&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, AA&gt;) -&gt; bool {
+        </span><span class="kw">fn </span>is_bit_valid&lt;AA: <span class="kw">crate</span>::pointer::invariant::Reference&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, AA&gt;) -&gt; bool {
             <span class="comment">// SAFETY:
             // - The cast preserves address. The caller has promised that the
             //   cast results in an object of equal or lesser size, and so the
@@ -986,7 +986,7 @@
             // - The caller has promised that the destination type has
             //   `UnsafeCell`s at the same byte ranges as the source type.
             </span><span class="attr">#[allow(clippy::as_conversions)]
-            </span><span class="kw">let </span>candidate = <span class="kw">unsafe </span>{ candidate.cast_unsized::&lt;<span class="macro-nonterminal">$repr</span>, <span class="kw">_</span>&gt;(|p| p <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>) };
+            </span><span class="kw">let </span>candidate = <span class="kw">unsafe </span>{ candidate.cast_unsized_unchecked::&lt;<span class="macro-nonterminal">$repr</span>, <span class="kw">_</span>&gt;(|p| p <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>) };
 
             <span class="comment">// SAFETY: The caller has promised that the referenced memory region
             // will contain a valid `$repr`.
@@ -1000,7 +1000,7 @@
         </span><span class="kw">fn </span>only_derive_is_allowed_to_implement_this_trait() {}
 
         <span class="attr">#[inline]
-        </span><span class="kw">fn </span>is_bit_valid&lt;AA: invariant::Aliasing + invariant::AtLeast&lt;invariant::Shared&gt;&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, AA&gt;) -&gt; bool {
+        </span><span class="kw">fn </span>is_bit_valid&lt;AA: <span class="kw">crate</span>::pointer::invariant::Reference&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, AA&gt;) -&gt; bool {
             <span class="comment">// SAFETY:
             // - The cast preserves address. The caller has promised that the
             //   cast results in an object of equal or lesser size, and so the
@@ -1010,7 +1010,7 @@
             // - The caller has promised that the destination type has
             //   `UnsafeCell`s at the same byte ranges as the source type.
             </span><span class="attr">#[allow(clippy::as_conversions)]
-            </span><span class="kw">let </span><span class="macro-nonterminal">$candidate </span>= <span class="kw">unsafe </span>{ candidate.cast_unsized::&lt;<span class="macro-nonterminal">$repr</span>, <span class="kw">_</span>&gt;(|p| p <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>) };
+            </span><span class="kw">let </span><span class="macro-nonterminal">$candidate </span>= <span class="kw">unsafe </span>{ candidate.cast_unsized_unchecked::&lt;<span class="macro-nonterminal">$repr</span>, <span class="kw">_</span>&gt;(|p| p <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>) };
 
             <span class="comment">// Restore the invariant that the referent bytes are initialized.
             // SAFETY: The above cast does not uninitialize any referent bytes;
@@ -1024,7 +1024,7 @@
         <span class="attr">#[allow(clippy::missing_inline_in_public_items)]
         #[cfg_attr(all(coverage_nightly, __ZEROCOPY_INTERNAL_USE_ONLY_NIGHTLY_FEATURES_IN_TESTS), coverage(off))]
         </span><span class="kw">fn </span>only_derive_is_allowed_to_implement_this_trait() {}
-        <span class="attr">#[inline(always)] </span><span class="kw">fn </span>is_bit_valid&lt;A: invariant::Aliasing + invariant::AtLeast&lt;invariant::Shared&gt;&gt;(<span class="kw">_</span>: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, A&gt;) -&gt; bool { <span class="bool-val">true </span>}
+        <span class="attr">#[inline(always)] </span><span class="kw">fn </span>is_bit_valid&lt;AA: <span class="kw">crate</span>::pointer::invariant::Reference&gt;(<span class="kw">_</span>: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, AA&gt;) -&gt; bool { <span class="bool-val">true </span>}
     };
     (@method <span class="macro-nonterminal">$</span><span class="kw">trait</span>:<span class="macro-nonterminal">ident</span>) =&gt; {
         <span class="attr">#[allow(clippy::missing_inline_in_public_items)]
@@ -1176,7 +1176,7 @@
         // TryFromBytes)` macro arm for an explanation of why this is a sound
         // implementation of `is_bit_valid`.
         </span><span class="attr">#[inline]
-        </span><span class="kw">fn </span>is_bit_valid&lt;A: <span class="kw">crate</span>::pointer::invariant::Aliasing + <span class="kw">crate</span>::pointer::invariant::AtLeast&lt;invariant::Shared&gt;&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, A&gt;) -&gt; bool {
+        </span><span class="kw">fn </span>is_bit_valid&lt;A: <span class="kw">crate</span>::pointer::invariant::Reference&gt;(candidate: Maybe&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, A&gt;) -&gt; bool {
             TryFromBytes::is_bit_valid(candidate.transparent_wrapper_into_inner())
         }
     };

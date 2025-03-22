@@ -1,7 +1,7 @@
 package pw.lecture16;
 import java.util.Scanner;
 import java.util.Arrays;
-import pw.lecture16.ArrayMethods;
+// import pw.lecture16.ArrayMethods;
 public class targetDifference {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -16,10 +16,13 @@ public class targetDifference {
         while(right<arr.length) {
             if(arr[right] - arr[left]  == target) {
                 System.out.println("Pair found "+arr[left]+" and "+arr[right]+" at indices "+ left+" and "+right);
-                left++;
+                right++;
             }
             else if(arr[right] - arr[left] > target) {
                 left++;
+                if (left == right) { //avoiding left and right pointing to same element.
+                    right++;
+                }
             }
             else {
                 right++;
