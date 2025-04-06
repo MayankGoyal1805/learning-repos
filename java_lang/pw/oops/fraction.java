@@ -2,7 +2,7 @@ package pw.oops;
 
 public class fraction {
     int num;
-        int den;
+    int den;
 
         public void simplify() {
             int hcf = gcd(num, den);

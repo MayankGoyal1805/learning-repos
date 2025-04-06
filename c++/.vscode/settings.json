@@ -2,5 +2,7 @@
     "files.associations": {
         "vector": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "editor.mouseWheelZoom": true,
+    "terminal.integrated.mouseWheelZoom": true
 }
