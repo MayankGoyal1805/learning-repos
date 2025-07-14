@@ -15,6 +15,6 @@ int main() {
         pop(s);
     }
 
-    deleteStack(s);
+    delete_stack(s);
     return 0;
 }

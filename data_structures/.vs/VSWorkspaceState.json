@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\c",
+    "\\c\\queue",
+    "\\c\\queue\\circular_array_impl",
+    "\\c\\queue\\linked_list_impl"
+  ],
+  "SelectedNode": "\\c\\queue\\circular_array_impl\\test.c",
+  "PreviewInSolutionExplorer": false
+}

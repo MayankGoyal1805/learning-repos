@@ -5,6 +5,9 @@ from constants import *
 #      -H "Content-Type: application/x-www-form-urlencoded" \
 #      -d "grant_type=client_credentials&client_id=your-client-id&client_secret=your-client-secret"
 
+def main():
+    print(get_acccess_token())
+
 def get_acccess_token():
 
     try:
@@ -45,3 +48,5 @@ def get_acccess_token():
         elif response.status_code == 403:
             print(">>> Your token doesn't have the right permissions (scopes) or is blacklisted.")
 
+if __name__ == "__main__":
+    main()

@@ -40,7 +40,14 @@ public:
     }
 
     bool is_empty(){
-        if(top==-1){
+        if(this->top==-1){
+            return true;
+        }
+        return false;
+    }
+
+    bool is_full(){
+        if(this->top==this->capacity-1){
             return true;
         }
         return false;

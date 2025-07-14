@@ -37,8 +37,25 @@ void printInOrder(node* root){
 }
 
 int height(node* root){
-    if(root==NULL) return -1;
+    if(root==NULL) return 0;
     int lheight = height(root->left);
     int rheight = height(root->right);
     return lheight>rheight? lheight+1:rheight+1;
+}
+
+void printLevel(node* root,int level){
+    if(root==NULL) return;
+    if(level==1) printf("%d ",root->data);
+    if(level>1){
+        printLevel(root->left,level-1);
+        printLevel(root->right,level-1);
+    }
+}
+
+void printLevelOrder(node* root){
+    int levels = height(root);
+    for(int i=1;i<=levels;i++){
+        printLevel(root,i);
+        printf("\n");
+    }
 }

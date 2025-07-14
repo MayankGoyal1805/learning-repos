@@ -13,7 +13,7 @@ int main(){
     root->right->right = newNode(12);
     // Level 3
     root->left->left->left = newNode(11);
-    // root->left->left->right = new node(14);
+    root->left->left->right = newNode(14);
     root->left->right->left = newNode(21);
     root->left->right->right = newNode(19);
     root->right->left->left = newNode(16);
@@ -22,6 +22,14 @@ int main(){
     root->right->right->right = newNode(31);
 
     printf("%d\n",height(root));
+    printLevelOrder(root);
+    printf("\n\n");
+    printPreOrder(root);
+    printf("\n\n");
+    printInOrder(root);
+    printf("\n\n");
+    printPostOrder(root);
+    printf("\n\n");
 
 }
 

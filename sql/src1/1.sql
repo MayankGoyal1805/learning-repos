@@ -1,8 +1,10 @@
-SELECT "name" FROM "authors" 
-WHERE "id" = (
-    SELECT "author_id" FROM "authored"
-    WHERE "book_id"=(
-        SELECT "id" FROM "books"
-        WHERE "title"="The Birthday Party"
-    )
-)
+SELECT
+    a.name AS author_name,
+    b.title AS book_title
+FROM
+    authors AS a
+INNER JOIN
+    authored AS au ON a.id = au.author_id
+INNER JOIN
+    books AS b ON au.book_id = b.id
+LIMIT 1
